@@ -93,4 +93,9 @@ OR
 
  - install flux packages
 
-> npm install --save react react-dom
+> npm install flux
+
+
+ - install axios for requests
+
+> npm install axios
