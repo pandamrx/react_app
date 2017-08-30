@@ -44,6 +44,6 @@ window.addEventListener('scroll', function(e) {
      * */
 
 
-    PostAction.loadMorePosts(pageNum)
+    //PostAction.loadMorePosts(pageNum)
 
 });
