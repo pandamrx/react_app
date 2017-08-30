@@ -25,7 +25,10 @@ export default class Posts extends React.Component {
         let items = [];
         for(let i in this.props.data) {
             let post = this.props.data[i];
-            items.push(<PostItem id={post.id} title={post.title} postBody={post.body} key={i} comments={this.props.comments} />);
+            items.push(
+                <PostItem id={post.id} title={post.title} postBody={post.body}
+                          key={i} comments={this.props.comments} />
+            );
         }
 
         return items;
@@ -45,7 +48,7 @@ export default class Posts extends React.Component {
             loader = (items.length > 0) ? false :
                 <div className="posts-loader">
                     <img src="http://blog.teamtreehouse.com/wp-content/uploads/2015/05/InternetSlowdown_Day.gif"></img>
-                </div> ;
+                </div>;
 
         return (
             <div>

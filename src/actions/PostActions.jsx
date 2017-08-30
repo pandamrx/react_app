@@ -11,10 +11,33 @@ class PostActions {
 
     }
 
+    loadMorePosts(pageNum) {
+        AppDispatcher.dispatch({
+            type: ActionTypes.LOAD_POSTS,
+            data: response.data
+        });
+    }
+
     loadPosts() {
 
-        axios.get('http://jsonplaceholder.typicode.com/posts')
-            .then(function (response) {
+        /*let promise = new Promise();
+
+        promise
+            .then(function(resp) {
+
+            }, function (response) {
+                AppDispatcher.dispatch({
+                    type: ActionTypes.LOAD_POSTS,
+                    data: response.data
+                })
+
+            .catch();*/
+
+        let ajaxPromise = axios
+            .get('http://jsonplaceholder.typicode.com/posts');
+
+
+        ajaxPromise.then(function (response) {
                 AppDispatcher.dispatch({
                     type: ActionTypes.LOAD_POSTS,
                     data: response.data
@@ -36,13 +59,16 @@ class PostActions {
     }
 
     loadComments(postId) {
+
         axios.get('http://jsonplaceholder.typicode.com/comments?postId='+postId)
             .then(function (response) {
+
                 AppDispatcher.dispatch({
                     type: ActionTypes.LOAD_COMMENTS,
                     comments: response.data,
                     postId: postId
                 });
+
             })
             .catch(function (error) {
                 console.log(error);

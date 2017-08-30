@@ -18,6 +18,7 @@ class Comments extends ReduceStore {
         switch (action.type) {
 
             case ActionTypes.LOAD_COMMENTS:
+
                 return state.concat([{
                     postId: action.postId,
                     comments: action.comments

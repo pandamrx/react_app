@@ -7,6 +7,8 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import PostsContainer from './containers/PostsContainer';
 
+import PostAction from './actions/PostActions';
+
 let title = 'Simple React App';
 
 function updateProps(e) {
@@ -32,3 +34,16 @@ ReactDOM.render(
     <PostsContainer title="Articles"/>,
     document.getElementById('posts-app')
 );
+
+
+window.addEventListener('scroll', function(e) {
+    let pageNum = 0;
+    /**
+     * Your Code
+     *
+     * */
+
+
+    PostAction.loadMorePosts(pageNum)
+
+});

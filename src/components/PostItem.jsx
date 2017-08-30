@@ -27,15 +27,20 @@ export default class PostItem extends React.Component {
 
     loadComments(e) {
         e.preventDefault();
-        if(!this.state.commentsRendered) {
+
+        PostActions.loadComments(this.props.id);
+
+
+
+        /*if(!this.state.commentsRendered) {
             PostActions.loadComments(this.props.id);
             this.setState({
                 commentsRendered: true,
                 commentsShown: true,
             });
-        }
+        }*/
 
-        return false;
+        // return false;
     }
 
     renderComments() {
@@ -51,7 +56,10 @@ export default class PostItem extends React.Component {
                 <h4>{this.props.title}</h4>
                 <p>{this.props.postBody}</p>
                 <a href="#" onClick={this.loadDetails} id={linkId}>details</a><span> </span>
+
                 <a href="#" onClick={(e) => this.loadComments(e)} id={commentsLinkId}>comments</a>
+
+
                 {this.renderComments()}
             </article>);
     }
