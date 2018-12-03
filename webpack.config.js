@@ -1,13 +1,47 @@
+
+
 const path = require('path');
 const webpack = require('webpack');
+/**
+ * Basic config
+ * */
+/*
+ ./webpack.config.js
+ */
 
-module.exports = {
+/*const simpleConfig = {
+    entry: './src/index.js',
+    output: {
+        path: path.resolve('dist'),
+        filename: 'index.bundle.js'
+    },
+    module: {
+        rules: [
+            { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
+            { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
+        ]
+    },
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin(),
+    ]
 
-    context: path.resolve(__dirname, 'src'),
+};
+
+module.exports = simpleConfig;*/
+
+/**
+ * Multi Page Config
+ *
+ * */
+const multiPage = {
+
+    context: path.resolve(__dirname, 'src/entry'),
 
     entry: {
+        startApp: './startApp.js',
         app: './app.js',
-        index: './index.js'
+        index: './index.js',
+        simpleFlux: './simple_flux_app.js'
     },
 
     output: {
@@ -16,7 +50,7 @@ module.exports = {
     },
 
     module: {
-        loaders: [
+        rules: [
             { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
             { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
         ]
@@ -43,41 +77,23 @@ module.exports = {
          * Source Map
          * */
         new webpack.SourceMapDevToolPlugin({
-            filename: '[name].js.map',
-            exclude: ['vendor.js']
+            filename: '[name].bundle.js.map',
+            exclude: ['commons.js']
         }),
 
         /**
          * Uglify JS
          * */
+        // new webpack.optimize.UglifyJsPlugin()
         /*new webpack.optimize.UglifyJsPlugin({
             sourceMap: true,
-            compress: false
+            compress: true
         }),*/
 
 
     ],
 };
+module.exports = multiPage;
 
 
-/**
- * Basic config
- * */
-/*
- ./webpack.config.js
- */
-
-/*module.exports = {
-    entry: './src/index.js',
-    output: {
-        path: path.resolve('dist'),
-        filename: 'index_bundle.js'
-    },
-    module: {
-        loaders: [
-            { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-            { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
-        ]
-    }
-};*/
-
+// module.exports = [ simpleConfig, multiPage ];

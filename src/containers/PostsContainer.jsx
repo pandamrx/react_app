@@ -7,7 +7,7 @@ import PostStore from '../stores/PostStore';
 import CommentStore from '../stores/CommentStore';
 import PostsView from '../components/Posts';
 
-class PostsContainer extends Component {
+class PostsComponent extends Component {
 
     static getStores() {
         return [PostStore, CommentStore];
@@ -21,9 +21,11 @@ class PostsContainer extends Component {
     }
 
     render() {
+        const data = this.state;
+
         return <PostsView {...this.state} title={this.props.title}/>;
     }
 }
 
-const container = Container.create(PostsContainer);
+const container = Container.create(PostsComponent);
 export default container;

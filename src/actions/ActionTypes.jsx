@@ -1,3 +1,5 @@
+
+
 const ActionTypes = {
     LOAD_POSTS: 'LOAD_POSTS',
     SHOW_POSTS: 'SHOW_POSTS',

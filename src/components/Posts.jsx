@@ -3,7 +3,7 @@
 import React from 'react';
 
 import PostItem from './PostItem';
-
+import {History} from './History';
 
 import PostActions from '../actions/PostActions';
 
@@ -13,12 +13,12 @@ export default class Posts extends React.Component {
         super(props);
         this.loadsPosts = this.loadsPosts.bind(this);
 
-        PostActions.loadPosts();
+        // PostActions.loadPosts();
     }
 
     componentDidMount() {
 
-        // PostActions.loadPosts();
+        PostActions.loadPosts();
     }
 
     renderItems() {
@@ -54,6 +54,7 @@ export default class Posts extends React.Component {
             <div>
                 <h1>{this.props.title}</h1>
                 {loader}
+                <History />
                 <div className="items-container">
                     {items}
                 </div>

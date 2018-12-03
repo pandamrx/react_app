@@ -1,15 +1,4 @@
 import {Dispatcher} from 'flux';
 
-
-
-class AppDispatcherClass extends Dispatcher {
-
-
-
-}
-
-
-const AppDispatcher = new AppDispatcherClass();
-
-
-export default AppDispatcher;
+class AppDispatcherClass extends Dispatcher {}
+export default new AppDispatcherClass();

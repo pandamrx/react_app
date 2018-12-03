@@ -12,10 +12,13 @@ class PostActions {
     }
 
     loadMorePosts(pageNum) {
+
+
         AppDispatcher.dispatch({
-            type: ActionTypes.LOAD_POSTS,
-            data: response.data
+            type: ActionTypes.LOAD_POSTS
         });
+
+
     }
 
     loadPosts() {

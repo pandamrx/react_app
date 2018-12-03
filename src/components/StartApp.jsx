@@ -1,10 +1,8 @@
-'use strict';
 import React from 'react';
 
+import {History} from './History';
 
-import {AppContent} from './AppContent';
-
-export default class App extends React.Component {
+class StartApp extends React.Component {
 
     static displayName: 'Main App'
 
@@ -37,8 +35,8 @@ export default class App extends React.Component {
             date: new Date()
         };
 
-        this.componentWillMount = this.componentWillMount.bind(this);
         this.generateStatus = this.generateStatus.bind(this);
+        console.log('constructor');
     }
 
     componentWillMount() {
@@ -47,9 +45,10 @@ export default class App extends React.Component {
          * - This is the only lifecycle hook called on server rendering. Generally, we recommend using the constructor() instead.
          * */
 
-        /*this.setState({
+        this.setState({
             status: 'ready to mount'
-        });*/
+        });
+        console.log('componentWillMount');
     }
 
     componentDidMount() {
@@ -58,6 +57,10 @@ export default class App extends React.Component {
          * - Setting state in this method will trigger a re-rendering.
          * */
 
+        this.setState({
+            data: []
+        });
+        console.log('componentDidMount');
 
     }
 
@@ -78,8 +81,8 @@ export default class App extends React.Component {
          * - state can be updated via this.setState()
          * */
         console.log(this.props);
-
         console.log(nextProps);
+        console.log('componentWillReceiveProps');
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -87,6 +90,9 @@ export default class App extends React.Component {
          * @dafault return true
          * - return false doesn't invoke other methods such as componentWillUpdate(), render(), and componentDidUpdate()
          * */
+        console.log('shouldComponentUpdate');
+
+
         return true;
     }
 
@@ -95,6 +101,9 @@ export default class App extends React.Component {
          * don't this.setState()
          * - If you need to update state in response to a prop change, use componentWillReceiveProps() instead
          * */
+        /*this.props = nextProps;
+        this.state = nextState;*/
+        console.log('componentWillUpdate');
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -103,7 +112,14 @@ export default class App extends React.Component {
          * - This is also a good place to do network requests as long as you compare the current props to previous props
          * (e.g. a network request may not be necessary if the props have not changed).
          * */
+        console.log('componentDidUpdate');
     }
+
+
+    /**
+     * Deleting Component
+     *
+     * */
 
     componentWillUnmount() {
 
@@ -111,18 +127,18 @@ export default class App extends React.Component {
 
     generateStatus(e) {
         let status = '',
-        dictionary = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            dictionary = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
         for(let i = 0; i < 6; i++ ) {
             status += dictionary.charAt(Math.floor(Math.random() * dictionary.length))
         }
 
-        (ars) => {
+        /*(ars) => {
             console.log(ars);
-        };
+        };*/
         this.setState({
             status: status
-        })
+        });
 
     }
 
@@ -135,12 +151,12 @@ export default class App extends React.Component {
     }
 
     render() {
-
-        let fruit = 'apple';
+        console.log('render');
+        let fruit = this.props.fruit || 'apple';
         let classNames = this.getClassForStatus();
 
         return (
-                <div>
+            <div>
                 <h1>{this.props.title}</h1>
                 <span>{fruit}</span>
                 <div className={classNames}>
@@ -150,10 +166,18 @@ export default class App extends React.Component {
                         <button id="update-props" onClick={this.props.updateProps}>Update Props</button>
                     </div>
 
-                    <AppContent />
-
                 </div>
+
+                <History/>
+
+                <History>
+                    <div>some text #1</div>
+                    <div>some text #2</div>
+                    <div>some text #3</div>
+                </History>
             </div>);
     }
 
 }
+
+export default  StartApp;

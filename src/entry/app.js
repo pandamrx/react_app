@@ -4,14 +4,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 
-import App from './components/App';
-import PostsContainer from './containers/PostsContainer';
+import App from '../components/App';
+import PostsContainer from '../containers/PostsContainer';
 
-import PostAction from './actions/PostActions';
+import PostAction from '../actions/PostActions';
+import _ from 'lodash';
 
 let title = 'Simple React App';
 
-function updateProps(e) {
+/*function updateProps(e) {
     title = 'new title';
     renderApp();
 }
@@ -25,7 +26,10 @@ function renderApp() {
 
 }
 
-renderApp();
+renderApp();*/
+
+
+
 
 
 
@@ -36,14 +40,21 @@ ReactDOM.render(
 );
 
 
+
+
+
+
+
+
+
 window.addEventListener('scroll', function(e) {
     let pageNum = 0;
     /**
      * Your Code
      *
      * */
+    let test = _.join(['APP', 'React'], ' ');
 
-
-    //PostAction.loadMorePosts(pageNum)
+    PostAction.loadMorePosts(pageNum);
 
 });

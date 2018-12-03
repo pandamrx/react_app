@@ -39,7 +39,7 @@
  }
 
  - set up babel for ES6 and for React
-> npm install --save-dev babel-loader babel-core babel-preset-es2015 babel-preset-react
+> npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react
 
  - create babel config file .babelrc
 > touch .babelrc

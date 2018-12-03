@@ -12,3 +12,5 @@ function component() {
 }
 
 document.body.appendChild(component());
+
+const test = 'test';
