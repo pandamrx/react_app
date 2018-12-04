@@ -1,3 +1,4 @@
+const CompressionPlugin = require('compression-webpack-plugin');
 
 
 const path = require('path');
@@ -22,7 +23,6 @@ const webpack = require('webpack');
         ]
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin(),
     ]
 
 };
@@ -48,6 +48,7 @@ const multiPage = {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].bundle.js',
     },
+    mode: process.env.NODE_ENV || 'development',
 
     module: {
         rules: [
@@ -68,6 +69,8 @@ const multiPage = {
          * Move common to one file
          * */
 
+        // new CompressionPlugin(),
+
         /*new webpack.optimize.CommonsChunkPlugin({
             name: "commons",
             filename: "commons.js",
@@ -80,15 +83,6 @@ const multiPage = {
             filename: '[name].bundle.js.map',
             exclude: ['commons.js']
         }),
-
-        /**
-         * Uglify JS
-         * */
-        // new webpack.optimize.UglifyJsPlugin()
-        /*new webpack.optimize.UglifyJsPlugin({
-            sourceMap: true,
-            compress: true
-        }),*/
 
 
     ],

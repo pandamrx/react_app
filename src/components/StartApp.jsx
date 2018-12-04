@@ -4,14 +4,14 @@ import {History} from './History';
 
 class StartApp extends React.Component {
 
-    static displayName: 'Main App'
+    static displayName = 'Main App'
 
-    static defaultProps: {
+    static defaultProps = {
         status: 'default',
         name: 'default',
     }
 
-    propTypes: {
+    propTypes = {
         updateProps: React.PropTypes.funct.isRequired,
         status: React.PropTypes.string
     }
